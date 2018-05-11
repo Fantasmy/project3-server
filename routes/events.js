@@ -7,22 +7,22 @@ const mongooose = require('mongoose');
 const Event = require('../models/event');
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
-  Event.find({})
-    .then((result) => {
-      res.json(result);
-    })
-    .catch(next);
-});
+// router.get('/', (req, res, next) => {
+//   Event.find({})
+//     .then((result) => {
+//       res.json(result);
+//     })
+//     .catch(next);
+// });
 
 router.post('/', (req, res, next) => {
   const title = req.body.title;
-  const date = Date(req.body.date);
-  const time = Number(req.body.time);
+  // const date = Number(req.body.date);
+  // const time = Number(req.body.time);
   const musicType = req.body.musicType;
   const description = req.body.description;
 
-  if (title === '' || musicType === '' || date === '' || time === '') {
+  if (title === '' || musicType === '') { // missing date and time
     return res.status(422).json({ code: 'Unprocessable-entity' });
   }
 
@@ -34,7 +34,7 @@ router.post('/', (req, res, next) => {
   //   }
   // })
 
-  const newEvent = new Event({ title, date, time, musicType, description });
+  const newEvent = new Event({ title, musicType, description });
 
   newEvent.save()
     .then((result) => {
@@ -60,6 +60,7 @@ router.put('/:id', (req, res, next) => {
     title: req.body.title,
     date: Date(req.body.date),
     time: Number(req.body.time),
+    // musicType: (req.body.musicType).toLowerCase(),
     musicType: req.body.musicType,
     description: req.body.description
   };

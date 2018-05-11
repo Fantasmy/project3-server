@@ -1,11 +1,11 @@
-'use strict'
+'use strict';
 
 const express = require('express');
 const router = express.Router();
 
 /* GET home page. */
-router.get('/', (req, res, next) =>  {
-  res.json({title: 'Wellcome to liveBeats'})
+router.get('/', (req, res, next) => {
+  res.json({title: 'wellcome movies api'});
 });
 
 module.exports = router;

@@ -1,4 +1,5 @@
 'use strict';
+
 const express = require('express');
 const bcrypt = require('bcrypt');
 const router = express.Router();
@@ -46,6 +47,9 @@ router.post('/signup', (req, res, next) => {
 
   const username = req.body.username;
   const password = req.body.password;
+  const phone = req.body.phone;
+  const website = req.body.website;
+  // const location = req.body.location;
 
   if (!username || !password) {
     return res.status(422).json({code: 'validation'});
@@ -62,7 +66,9 @@ router.post('/signup', (req, res, next) => {
 
       const newUser = Bar({
         username,
-        password: hashPass
+        password: hashPass,
+        phone,
+        website
       });
 
       return newUser.save()

@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const barSchema = new Schema({
-  barname: {
+  username: {
     type: String,
     required: true
   },
@@ -12,22 +12,29 @@ const barSchema = new Schema({
     type: String,
     required: true
   },
-  location: {
-    street: {
-      type: String,
-      required: true
-    },
-    number: {
-      type: String
-    },
-    postalCode: {
-      type: Number,
-      required: true
-    },
-    city: {
-      type: String,
-      required: true
-    }
+  phone: {
+    type: Number
+  },
+  website: {
+    type: String,
+    required: false
+  // },
+  // location: Object = {
+  //   street: {
+  //     type: String,
+  //     required: true
+  //   },
+  //   number: {
+  //     type: String
+  //   },
+  //   postalCode: {
+  //     type: Number,
+  //     required: true
+  //   },
+  //   city: {
+  //     type: String,
+  //     required: true
+  //   }
   // location: {
   //   type: {
   //     type: String,
@@ -39,13 +46,6 @@ const barSchema = new Schema({
   //     },
   //     coordinates: [Number]
   //   }
-  },
-  phone: {
-    type: Number
-  },
-  website: {
-    type: String,
-    required: false
   }
 });
 

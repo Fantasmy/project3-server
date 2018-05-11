@@ -9,12 +9,12 @@ const eventSchema = new Schema({
     type: String,
     required: true
   },
-  date: {
-    type: Date
-  },
-  time: {
-    type: Number // Time??????
-  },
+  // date: {
+  //   type: Number
+  // },
+  // time: {
+  //   type: Number // Time??????
+  // },
   musicType: {
     type: String,
     enum: ['classic', 'folklore', 'jazz', 'other', 'pop', 'rap', 'rock'],
