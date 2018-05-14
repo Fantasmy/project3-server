@@ -18,34 +18,34 @@ const barSchema = new Schema({
   website: {
     type: String,
     required: false
-  // },
-  // location: Object = {
-  //   street: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   number: {
-  //     type: String
-  //   },
-  //   postalCode: {
-  //     type: Number,
-  //     required: true
-  //   },
-  //   city: {
-  //     type: String,
-  //     required: true
-  //   }
-  // location: {
-  //   type: {
-  //     type: String,
-  //     default: 'Point'
-  //   },
-  //   location: {
-  //     type: {
-  //       type: String
-  //     },
-  //     coordinates: [Number]
-  //   }
+  },
+  location: {
+    street: {
+      type: String,
+      required: true
+    },
+    strNumber: {
+      type: String
+    },
+    postCode: {
+      type: Number,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    }
+    // location: {
+    //   type: {
+    //     type: String,
+    //     default: 'Point'
+    //   },
+    //   location: {
+    //     type: {
+    //       type: String
+    //     },
+    //     coordinates: [Number]
+    //   }
   }
 });
 

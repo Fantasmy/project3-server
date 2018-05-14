@@ -44,12 +44,17 @@ router.post('/signup', (req, res, next) => {
   if (req.session.currentUser) {
     return res.status(401).json({code: 'unauthorized'});
   }
-
   const username = req.body.username;
   const password = req.body.password;
   const phone = req.body.phone;
   const website = req.body.website;
-  // const location = req.body.location;
+  const location = {
+    street: req.body.location.street,
+    strNumber: req.body.location.strNumber,
+    postCode: req.body.location.postCode,
+    city: req.body.location.city
+
+  };
 
   if (!username || !password) {
     return res.status(422).json({code: 'validation'});
@@ -68,7 +73,8 @@ router.post('/signup', (req, res, next) => {
         username,
         password: hashPass,
         phone,
-        website
+        website,
+        location
       });
 
       return newUser.save()
