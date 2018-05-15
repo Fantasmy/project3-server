@@ -14,6 +14,14 @@ router.get('/me', (req, res, next) => {
   }
 });
 
+// router.get('/:id', (req, res, next) => {
+//   Bar.findById(req.params.id)
+//     .then((result) => {
+//       res.json(result);
+//     })
+//     .catch(next);
+// });
+
 router.post('/login', (req, res, next) => {
   if (req.session.currentUser) {
     return res.status(401).json({code: 'unauthorized'});

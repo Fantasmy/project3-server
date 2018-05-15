@@ -48,6 +48,7 @@ router.get('/by-type/:musicType', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const imgUrl = req.body.imgUrl;
   const title = req.body.title;
+  const bar = req.session.currentUser._id;
   // const date = Number(req.body.date);
   // const time = Number(req.body.time);
   const musicType = req.body.musicType;
@@ -57,15 +58,19 @@ router.post('/', (req, res, next) => {
     return res.status(422).json({ code: 'Unprocessable-entity' });
   }
 
-  // check if the name is already in use
-  // Event.findOne({title: title})
-  // .then(result => {
-  //   if (result) {
-  //     return res.status(401).json({code: 'tite already in use'});
-  //   }
-  // })
+  // const eventData = {
+  //   imgUrl: req.body.imgUrl,
+  //   title: req.body.title,
+  //   bar: req.session.currentUser._id,
+  // date: Number(req.body.date),
+  // time: Number(req.body.time),
+  //   musicType: req.body.musicType,
+  //   description: req.body.description
+  // };
 
-  const newEvent = new Event({ imgUrl, title, musicType, description });
+  // const newEvent = new Event({ eventData });
+
+  const newEvent = new Event({ imgUrl, title, musicType, description, bar });
 
   newEvent.save()
     .then((result) => {
