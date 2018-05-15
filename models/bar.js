@@ -12,6 +12,14 @@ const barSchema = new Schema({
     type: String,
     required: true
   },
+  venue: {
+    type: String,
+    required: true
+  },
+  imgUrl: {
+    type: String,
+    required: false
+  },
   phone: {
     type: Number
   },

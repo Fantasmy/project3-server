@@ -23,7 +23,7 @@ router.get('/:id', (req, res, next) => {
     .catch(next);
 });
 
-/* GET all the events by music type  */
+/* GET all the events by music type, changed name route to not get stuck at /:if  */
 router.get('/by-type/:musicType', (req, res, next) => {
   Event.find({ musicType: req.params.musicType })
     .then((result) => {

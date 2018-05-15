@@ -46,6 +46,8 @@ router.post('/signup', (req, res, next) => {
   }
   const username = req.body.username;
   const password = req.body.password;
+  const venue = req.body.venue;
+  const imgUrl = req.body.imgUrl;
   const phone = req.body.phone;
   const website = req.body.website;
   const location = {
@@ -72,6 +74,8 @@ router.post('/signup', (req, res, next) => {
       const newUser = Bar({
         username,
         password: hashPass,
+        venue,
+        imgUrl,
         phone,
         website,
         location
