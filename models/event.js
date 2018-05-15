@@ -5,6 +5,10 @@ const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
 const eventSchema = new Schema({
+  imgUrl: {
+    type: String,
+    required: false
+  },
   title: {
     type: String,
     required: true

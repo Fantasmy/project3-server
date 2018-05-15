@@ -6,16 +6,47 @@ const mongooose = require('mongoose');
 
 const Event = require('../models/event');
 
-/* GET home page. */
-// router.get('/', (req, res, next) => {
-//   Event.find({})
-//     .then((result) => {
-//       res.json(result);
+/* GET all the list  */
+router.get('/', (req, res, next) => {
+  Event.find({})
+    .then((result) => {
+      res.json(result);
+    })
+    .catch(next);
+});
+
+router.get('/:id', (req, res, next) => {
+  Event.findById(req.params.id)
+    .then((result) => {
+      res.json(result);
+    })
+    .catch(next);
+});
+
+/* GET all the events by music type  */
+router.get('/by-type/:musicType', (req, res, next) => {
+  Event.find({ musicType: req.params.musicType })
+    .then((result) => {
+      res.json(result);
+    })
+    .catch(next);
+});
+
+// router.get('/search', (req, res, next) => {
+//   const selectedMusic = req.body.musicType; // gets musicType key from the body
+//   Event.find({musicType: selectedMusic}) // musicType from model of events
+//     .populate('bar') // populate the bar: ObjectID with actual data, same bar as in the model of event
+//     .then((result) => { // receives result, array of the rock event (and inside the populated info of bar)
+//       const data = {
+//         events: result
+//       };
+//       res.json(data); // converts data into string to send to main.js (front-end) => to response
 //     })
 //     .catch(next);
 // });
 
 router.post('/', (req, res, next) => {
+  const imgUrl = req.body.imgUrl;
   const title = req.body.title;
   // const date = Number(req.body.date);
   // const time = Number(req.body.time);
@@ -34,19 +65,11 @@ router.post('/', (req, res, next) => {
   //   }
   // })
 
-  const newEvent = new Event({ title, musicType, description });
+  const newEvent = new Event({ imgUrl, title, musicType, description });
 
   newEvent.save()
     .then((result) => {
       res.status(201).json({ code: 'okay' }); // status 201 = created
-    })
-    .catch(next);
-});
-
-router.get('/:id', (req, res, next) => {
-  Event.findById(req.params.id)
-    .then((result) => {
-      res.json(result);
     })
     .catch(next);
 });
@@ -57,9 +80,10 @@ router.put('/:id', (req, res, next) => {
   }
 
   const newData = {
+    imgUrl: req.body.imgUrl,
     title: req.body.title,
-    date: Date(req.body.date),
-    time: Number(req.body.time),
+    // date: Date(req.body.date),
+    // time: Number(req.body.time),
     // musicType: (req.body.musicType).toLowerCase(),
     musicType: req.body.musicType,
     description: req.body.description
@@ -76,9 +100,10 @@ router.put('/:id', (req, res, next) => {
         return res.status(404).json({code: 'not-found'});
       }
 
+      result.imgUrl = newData.imgUrl;
       result.title = newData.title;
-      result.date = newData.date;
-      result.time = newData.time;
+      // result.date = newData.date;
+      // result.time = newData.time;
       result.musicType = newData.musicType;
       result.description = newData.description;
 
