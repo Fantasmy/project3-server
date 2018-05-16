@@ -2,6 +2,7 @@
 
 // require npm packages
 
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -20,7 +21,7 @@ const bars = require('./routes/bars');
 // connect to db
 
 mongoose.Promise = Promise;
-mongoose.connect('mongodb://localhost/project3', {
+mongoose.connect(process.env.MONGODB_URI, {
   keepAlive: true,
   reconnectTries: Number.MAX_VALUE
 });
@@ -32,7 +33,7 @@ const app = express();
 
 app.use(cors({
   credentials: true,
-  origin: ['http://localhost:4200']
+  origin: [process.env.CLIENT_URI]
 }));
 
 app.use(session({
