@@ -96,10 +96,6 @@ router.put('/:id', (req, res, next) => {
     description: req.body.description
   };
 
-  const options = {
-    new: true
-  };
-
   // if there's no Event with this id
   Event.findById(req.params.id)
     .then((result) => {

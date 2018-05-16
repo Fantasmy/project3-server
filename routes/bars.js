@@ -32,10 +32,6 @@ router.put('/:id', (req, res, next) => {
     }
   };
 
-  const options = {
-    new: true
-  };
-
   Bar.findById(req.params.id)
     .then((result) => {
       if (!result) {
