@@ -89,6 +89,7 @@ router.put('/:id', (req, res, next) => {
   const newData = {
     imgUrl: req.body.imgUrl,
     title: req.body.title,
+    date: req.body.date,
     // date: Date(req.body.date),
     // time: Number(req.body.time),
     // musicType: (req.body.musicType).toLowerCase(),
@@ -105,7 +106,7 @@ router.put('/:id', (req, res, next) => {
 
       result.imgUrl = newData.imgUrl;
       result.title = newData.title;
-      // result.date = newData.date;
+      result.date = newData.date;
       // result.time = newData.time;
       result.musicType = newData.musicType;
       result.description = newData.description;
