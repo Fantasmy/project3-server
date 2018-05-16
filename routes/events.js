@@ -26,6 +26,7 @@ router.get('/:id', (req, res, next) => {
 /* GET all the events by music type, changed name route to not get stuck at /:if  */
 router.get('/by-type/:musicType', (req, res, next) => {
   Event.find({ musicType: req.params.musicType })
+    .populate('bar')
     .then((result) => {
       res.json(result);
     })
@@ -48,6 +49,7 @@ router.get('/by-type/:musicType', (req, res, next) => {
 router.post('/', (req, res, next) => {
   const imgUrl = req.body.imgUrl;
   const title = req.body.title;
+  const date = req.body.date;
   const bar = req.session.currentUser._id;
   // const date = Number(req.body.date);
   // const time = Number(req.body.time);
@@ -70,7 +72,7 @@ router.post('/', (req, res, next) => {
 
   // const newEvent = new Event({ eventData });
 
-  const newEvent = new Event({ imgUrl, title, musicType, description, bar });
+  const newEvent = new Event({ imgUrl, title, date, musicType, description, bar });
 
   newEvent.save()
     .then((result) => {

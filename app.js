@@ -15,6 +15,7 @@ const MongoStore = require('connect-mongo')(session);
 const index = require('./routes/index');
 const events = require('./routes/events');
 const auth = require('./routes/auth');
+const bars = require('./routes/bars');
 
 // connect to db
 
@@ -57,6 +58,7 @@ app.use(cookieParser());
 app.use('/', index);
 app.use('/events', events);
 app.use('/auth', auth);
+app.use('/bars', bars);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
