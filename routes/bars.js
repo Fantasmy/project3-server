@@ -42,10 +42,11 @@ router.put('/:id', (req, res, next) => {
       result.imgUrl = newData.imgUrl;
       result.phone = newData.phone;
       result.website = newData.website;
-      result.location.street = newData.location.street;
-      result.location.strNumber = newData.location.strNumber;
-      result.location.postCode = newData.location.postCode;
-      result.location.city = newData.location.city;
+      result.location = newData.location;
+      // result.location.street = newData.location.street;
+      // result.location.strNumber = newData.location.strNumber;
+      // result.location.postCode = newData.location.postCode;
+      // result.location.city = newData.location.city;
 
       result.save()
         .then(() => {

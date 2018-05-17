@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   Event.findById(req.params.id)
+    .populate('bar') // to get the bar id as an object
     .then((result) => {
       res.json(result);
     })
@@ -51,7 +52,6 @@ router.post('/', (req, res, next) => {
   const title = req.body.title;
   const date = req.body.date;
   const bar = req.session.currentUser._id;
-  // const date = Number(req.body.date);
   // const time = Number(req.body.time);
   const musicType = req.body.musicType;
   const description = req.body.description;
